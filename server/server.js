@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const path = require('path');
 const morgan = require('morgan');
-const database = require('../database');
+// const database = require('../database');
 const TOKEN = require('./config.js');
 
 const app = express();
