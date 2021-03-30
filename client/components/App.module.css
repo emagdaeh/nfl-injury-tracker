@@ -1,0 +1,18 @@
+.divider {
+  display: grid;
+  grid-template-columns: 1fr, 1fr;
+}
+
+.colOne {
+  grid-column: 1 / 2;
+  border-right: solid;
+  border-color: black;
+  margin-left: 3%;
+  height: 100vh;
+}
+
+.colTwo {
+  grid-column: 2 / 3;
+  margin-left: 3%;
+  height: 100vh;
+}
