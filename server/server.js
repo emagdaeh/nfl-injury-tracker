@@ -14,8 +14,13 @@ app.use(express.static('public'));
 
 app.get('/api/playersInfo', (req, res) => {
   axios
-    .post(`https://api.nfl.com/oauth/token/grant_type=client_credentials&client_id=${KEYS_AND_SECRET.client_id}&client_secret=${KEYS_AND_SECRET.secret}`)
-    .then((results) => res.send(results.access_token))
+    // .post(`https://api.nfl.com/oauth/token/grant_type=client_credentials&client_id=${KEYS_AND_SECRET.client_id}&client_secret=${KEYS_AND_SECRET.secret}`)
+    // .post(`http://api.nfl.com/oauth/token`)
+    .post(`https://api.nfl.com/oauth/token`, { grant_type: 'client_credentials', client_id: `${KEYS_AND_SECRET.client_id}`, client_secret: `${KEYS_AND_SECRET.secret}` })
+    .then((results) => {
+      console.log('results: ', results);
+      res.send(results.access_token);
+    })
     .catch((error) => {
       console.log(error);
     });

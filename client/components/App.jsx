@@ -9,17 +9,18 @@ const App = () => {
   const [player2Position, setPlayer2Position] = useState('');
   const [firstPlayerInfo, setFirstPlayerInfo] = useState({});
   const [secondPlayerInfo, setSecondPlayerInfo] = useState({});
+  const [roster, setRoster] = useState([]);
 
   const handlePlayerOne = (event) => {
     event.preventDefault();
 
-    // axios
-    //   .get('/api/playersInfo')
-    //   .then((results) => {
-    //     console.log(results);
-    //     setFirstPlayerInfo('Tyler');
-    //   })
-    //   .catch(console.log);
+    axios
+      .get('/api/playersInfo')
+      .then((results) => {
+        console.log(results);
+        setFirstPlayerInfo('Tyler');
+      })
+      .catch(console.log);
 
     setFirstPlayerInfo('Player 1 works');
   };
@@ -67,18 +68,20 @@ const App = () => {
           <input type="text" name={player1} placeholder="Marshawn Lynch" onChange={(event) => setPlayer1(event.target.value)} />
         </form>
         <button type="submit" onClick={handlePlayerOne}>Get Player 1 Stats</button>
+        <div>
+          Player:
+          <div>{player1}</div>
+          Current Team:
+          <div>Team</div>
+          Injury Rate Per Season:
+          <div>Person</div>
+          Injury Rate for Current Team:
+          <div>Bad Team</div>
+        </div>
         <button type="submit" onClick={handleFavorite}>Add Player to Roster</button>
-        {(firstPlayerInfo !== '') ? (
-          <div>
-            Current Team:
-            <div>Team</div>
-            Injury Rate Per Season:
-            <div>Person</div>
-            Injury Rate for Current Team:
-            <div>Bad Team</div>
-          </div>
-        )
-          : null}
+        <div>
+          Current Roster:
+        </div>
       </div>
       <div className={styles.colTwo}>
         <form>
@@ -86,18 +89,17 @@ const App = () => {
           <input type="text" name={player2} placeholder="Jerry Rice" onChange={(event) => setPlayer2(event.target.value)} />
         </form>
         <button type="submit" onClick={handlePlayerTwo}>Get Player 2 Stats</button>
+        <div>
+          Player:
+          <div>{player2}</div>
+          Current Team:
+          <div>Team</div>
+          Injury Rate Per Season:
+          <div>Person</div>
+          Injury Rate for Current Team:
+          <div>Bad Team</div>
+        </div>
         <button type="submit" onClick={handleFavorite}>Add Player to Roster</button>
-        {(secondPlayerInfo !== '') ? (
-          <div>
-            Current Team:
-            <div>Team</div>
-            Injury Rate Per Season:
-            <div>Person</div>
-            Injury Rate for Current Team:
-            <div>Bad Team</div>
-          </div>
-        )
-          : null}
       </div>
     </div>
   );
