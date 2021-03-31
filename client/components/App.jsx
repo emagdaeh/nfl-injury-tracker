@@ -7,6 +7,11 @@ const App = () => {
   const [roster, setRoster] = useState([]);
 
   // useEffect(() => {
+  //   const playersArr = [];
+
+  //   for (let i = 0; i < roster.length; i++) {
+
+  //   }
 
   // }, [roster]);
 
@@ -16,9 +21,14 @@ const App = () => {
         <PlayerInfo />
         <div className={styles.roster}>
           Current Roster:
-          {roster.map((player) => {
-            <input type="text" value={player} />;
-          })}
+          <ul>
+            {roster.map((player) => (
+              <li>
+                {player.position}
+                {player.name}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
       <div className={styles.colTwo}>

@@ -4,7 +4,6 @@ import styles from './App.module.css';
 
 const PlayerInfo = (props) => {
   const [player, setPlayer] = useState('');
-  const [playerPosition, setPlayerPosition] = useState('');
   const [playerInfo, setPlayerInfo] = useState({});
 
   const handlePlayer = (event) => {
@@ -30,8 +29,10 @@ const PlayerInfo = (props) => {
   const handleFavorite = (event) => {
     event.preventDefault();
 
+    const position = playerInfo.position;
+
     axios
-      .post('/api/favoritePlayer', { playerPosition, player })
+      .post('/api/favoritePlayer', { position, player })
       .then((data) => {
         console.log(data.status);
       })
@@ -39,6 +40,10 @@ const PlayerInfo = (props) => {
         console.log(error);
       });
   };
+
+  const playerPercentage = (played, missed) => (played / missed);
+
+  const teamScore = (q, d, o) => (q + (d * 2) + (o * 3));
 
   return (
     <>
@@ -50,13 +55,13 @@ const PlayerInfo = (props) => {
       <div className={styles.playerDataContainer}>
         <div className={styles.playerData}>
           Player:
-          <div style={{ margin: '3% 3%' }}>Hi Naveen</div>
+          <div style={{ margin: '3% 3%' }}>{playerInfo.name}</div>
           Current Team:
-          <div style={{ margin: '3% 3%' }}>Team</div>
+          <div style={{ margin: '3% 3%' }}>{playerInfo.team}</div>
           Career Injury Percentage:
-          <div style={{ margin: '3% 3%' }}>Person</div>
+          <div style={{ margin: '3% 3%' }}>{playerPercentage(playerInfo.gamesPlayed, playerInfo.gamesMissed)}</div>
           Team Injury Score:
-          <div style={{ margin: '3% 3%' }}>Team</div>
+          <div style={{ margin: '3% 3%' }}>{teamScore(playerInfo.teamQuestionables, playerInfo.teamDoubtfuls, playerInfo.teamOuts)}</div>
         </div>
         <div className={styles.playerPhoto}>
           Photo
