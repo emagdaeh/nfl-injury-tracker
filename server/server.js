@@ -33,12 +33,11 @@ app.use(express.static('public'));
 // });
 
 app.get('/api/playersInfo?:player', (req, res) => {
-  const name = req.query.name;
-  const position = req.query.position;
+  const { name } = req.query.name;
 
-  const playerStr = 'SELECT player, position FROM roster WHERE player = $1, position = $2';
+  const playerStr = 'SELECT position, player, players.team, gamesPlayed, gamesMissed, questionablePerSeason, doubtfulPerSeason, outPerSeason FROM players INNER JOIN teams WHERE players.player = $1 AND players.team = teams.name';
 
-  database.query(playerStr, [name, position], (err, data) => {
+  database.query(playerStr, [name], (err, data) => {
     if (err) {
       console.log(err.stack);
     } else {
@@ -48,11 +47,14 @@ app.get('/api/playersInfo?:player', (req, res) => {
 });
 
 app.post('/api/favoritePlayer', (req, res) => {
-  const { position, player } = req.body;
+  const {
+    position,
+    player,
+  } = req.body;
 
-  const playerStr = 'INSERT INTO roster (position, player) VALUES ($1, $2)';
+  const playerStr = 'INSERT INTO favoritePlayer (position, player) VALUES ($1, $2)';
 
-  database.query(playerStr, [position, player], (err, res) => {
+  database.query(playerStr, [position, player], (err) => {
     if (err) {
       console.log(err.stack);
     } else {
@@ -62,5 +64,5 @@ app.post('/api/favoritePlayer', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Reviews service listening at http://localhost:${port}`);
+  console.log(`Listening at http://localhost:${port}`);
 });
