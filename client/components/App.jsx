@@ -32,40 +32,50 @@ const App = () => {
     axios
       .delete(`/api/removePlayer/${player}`)
       .then((response) => {
-        console.log(response);
+        console.log(response.status);
       })
+      .then(() => getUpdatedRoster())
       .catch(console.log);
   };
 
   return (
-    <div className={styles.divider}>
-      <div className={styles.colOne}>
-        <PlayerInfo refreshRoster={getUpdatedRoster} currentRoster={roster} />
-        <div className={styles.roster}>
-          Current Roster:
-          <ul>
-            {roster.map((person) => (
-              <li>
-                {person.position}
-                {' | '}
-                {person.player}
-              </li>
-            ))}
-          </ul>
+    <div>
+      <div className={styles.header}>NFL Injury Tracker</div>
+      <div className={styles.divider}>
+        <div className={styles.colOne}>
+          <PlayerInfo refreshRoster={getUpdatedRoster} currentRoster={roster} />
+          <div className={styles.footer}>
+            <div className={styles.roster}>
+              Current Roster:
+              <ul>
+                {roster.map((person) => (
+                  <li>
+                    {person.position}
+                    {' | '}
+                    {person.player}
+                    {'  '}
+                    <button type="submit" value={person.player} onClick={removePlayer}>Remove Player</button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className={styles.colTwo}>
-        <PlayerInfo refreshRoster={getUpdatedRoster} currentRoster={roster} />
-        <div className={styles.legend}>
-          Career Injury Percentage:
-          <li>Calculated by dividing total games missed by the number of regular season games possible over the length of the player's career</li>
-          <br />
-          Team Injury Score:
-          <li>Calculated over the last 10 years of regular season games</li>
-          <li>Each Questionable designation per game counts as 1 point</li>
-          <li>Each Doubtful designation per game counts as 2 points</li>
-          <li>Each Out designcation per game counts at 3 points</li>
-          <li>The total is the sum of designations divided by 10 to average out the seasons, the higher score being the worse team</li>
+        <div className={styles.colTwo}>
+          <PlayerInfo refreshRoster={getUpdatedRoster} currentRoster={roster} />
+          <div className={styles.footer}>
+            <div className={styles.legend}>
+              Career Injury Percentage:
+              <li>Calculated by dividing total games missed by the number of regular season games possible, over the length of the player's career</li>
+              <br />
+              Team Injury Score:
+              <li>Calculated over the last 10 years of regular season games</li>
+              <li>Each Questionable designation per game counts as 1 point</li>
+              <li>Each Doubtful designation per game counts as 2 points</li>
+              <li>Each Out designation per game counts at 3 points</li>
+              <li>The total is the sum of designations divided by 10 to average out the seasons, the higher score being the worse team</li>
+            </div>
+          </div>
         </div>
       </div>
     </div>

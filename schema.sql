@@ -8,7 +8,8 @@ CREATE TABLE players (
   player VARCHAR(75),
   team VARCHAR(20),
   gamesPlayed INTEGER,
-  gamesMissed INTEGER
+  gamesMissed INTEGER,
+  photo VARCHAR(200)
 );
 
 CREATE TABLE teams (

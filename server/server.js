@@ -35,7 +35,7 @@ app.use(express.static('public'));
 app.get('/api/playersInfo/:player', (req, res) => {
   const name = req.params.player;
 
-  const playerStr = 'SELECT position, player, players.team, gamesPlayed, gamesMissed, questionablePerSeason, doubtfulPerSeason, outPerSeason FROM players, teams WHERE players.player = $1 AND players.team = teams.name';
+  const playerStr = 'SELECT position, player, players.team, gamesPlayed, gamesMissed, photo, questionablePerSeason, doubtfulPerSeason, outPerSeason FROM players, teams WHERE players.player = $1 AND players.team = teams.name';
 
   database.query(playerStr, [name], (err, data) => {
     if (err) {
@@ -75,12 +75,12 @@ app.get('/api/getRoster', (req, res) => {
   });
 });
 
-app.delete('/api/removePlayer?:player', (req, res) => {
-  const { player } = req.query.player;
+app.delete('/api/removePlayer/:player', (req, res) => {
+  const name = req.params.player;
 
   const deleteStr = 'DELETE FROM favoritePlayers WHERE player = $1';
 
-  database.query(deleteStr, [player], (err) => {
+  database.query(deleteStr, [name], (err) => {
     if (err) {
       console.log(err.stack);
     } else {

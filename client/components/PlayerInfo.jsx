@@ -92,9 +92,9 @@ const PlayerInfo = (props) => {
           Team Injury Score:
           <div style={{ margin: '3% 3%' }}>{teamScore(playerInfo.questionableperseason, playerInfo.doubtfulperseason, playerInfo.outperseason)}</div>
         </div>
-        <div className={styles.playerPhoto}>
-          Photo
-        </div>
+        {(playerInfo.photo === undefined)
+          ? (null)
+          : <input className={styles.playerPhoto} type="image" src={playerInfo.photo} alt={playerInfo.player} />}
       </div>
       <button type="submit" onClick={handleFavorite}>Add Player to Roster</button>
     </>
