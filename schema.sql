@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS teams;
 DROP TABLE IF EXISTS favoritePlayer;
 
 CREATE TABLE players (
-  id INTEGER PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   position VARCHAR(2),
   player VARCHAR(75),
   team VARCHAR(20),
@@ -12,7 +12,7 @@ CREATE TABLE players (
 );
 
 CREATE TABLE teams (
-  id INTEGER PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   city VARCHAR (20),
   name VARCHAR (20),
   questionablePerSeason INTEGER,
@@ -21,7 +21,7 @@ CREATE TABLE teams (
 );
 
 CREATE TABLE favoritePlayer (
-  id INTEGER PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   position VARCHAR(2),
   player VARCHAR(50)
 );

@@ -53,6 +53,18 @@ const PlayerInfo = (props) => {
   };
 
   const teamScore = (q, d, o) => {
+    if (q === 0) {
+      q = 1;
+    }
+
+    if (d === 0) {
+      d = 1;
+    }
+
+    if (o === 0) {
+      o = 1;
+    }
+
     const num = q + (d * 2) + (o * 3);
 
     if (Number.isNaN(num)) {

@@ -50,7 +50,7 @@ const App = () => {
           <li>Each Questionable designation per game counts as 1 point</li>
           <li>Each Doubtful designation per game counts as 2 points</li>
           <li>Each Out designcation per game counts at 3 points</li>
-          <li>The total is the sum of designations, the higher score being the worse team</li>
+          <li>The total is the sum of designations divided by 10 to average out the seasons, the higher score being the worse team</li>
         </div>
       </div>
     </div>
