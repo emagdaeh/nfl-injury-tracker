@@ -7,7 +7,12 @@ const App = () => {
   const [roster, setRoster] = useState([]);
 
   const getUpdatedRoster = () => {
-    //Axios get from database
+    axios
+      .get('/api/getRoster')
+      .then((results) => {
+        setRoster(results.data);
+      })
+      .catch(console.log);
   };
 
   const removePlayer = (event) => {
@@ -43,7 +48,7 @@ const App = () => {
         <PlayerInfo />
         <div className={styles.legend}>
           Career Injury Percentage:
-          <li>Calculated by dividing total regular season games over the length of the player's career by the amount of games missed</li>
+          <li>Calculated by dividing total games missed by the number of regular season games possible over the length of the player's career</li>
           <br />
           Team Injury Score:
           <li>Calculated over the last 10 years of regular season games</li>

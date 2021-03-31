@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './App.module.css';
 
@@ -6,22 +6,17 @@ const PlayerInfo = (props) => {
   const [player, setPlayer] = useState('');
   const [playerInfo, setPlayerInfo] = useState({});
 
+  // useEffect(() => {
+
+  // }, [playerInfo]);
+
   const handlePlayer = (event) => {
     event.preventDefault();
 
     axios
-      .get('/api/playersInfo/:player')
+      .get(`/api/playersInfo/${player}`)
       .then((results) => {
-        setPlayerInfo(
-          playerInfo.position = results.position,
-          playerInfo.name = results.name,
-          playerInfo.team = results.team,
-          playerInfo.gamesPlayed = results.gamesPlayed,
-          playerInfo.gamesMissed = results.gamesMissed,
-          playerInfo.teamQuestionables = results.questionablePerSeason,
-          playerInfo.teamDoubtfuls = results.doubtfulPerSeason,
-          playerInfo.teamOuts = results.outPerSeason,
-        );
+        setPlayerInfo(results.data);
       })
       .catch(console.log);
   };
@@ -29,7 +24,7 @@ const PlayerInfo = (props) => {
   const handleFavorite = (event) => {
     event.preventDefault();
 
-    const position = playerInfo.position;
+    const { position } = playerInfo;
 
     axios
       .post('/api/addPlayer', { position, player })
@@ -43,13 +38,13 @@ const PlayerInfo = (props) => {
   };
 
   const playerPercentage = (played, missed) => {
-    const num = played / missed;
+    const num = missed / played;
 
     if (Number.isNaN(num)) {
       return '-';
     }
 
-    return num;
+    return (num * 100).toFixed(2) + '%';
   };
 
   const teamScore = (q, d, o) => {
@@ -84,13 +79,13 @@ const PlayerInfo = (props) => {
       <div className={styles.playerDataContainer}>
         <div className={styles.playerData}>
           Player:
-          <div style={{ margin: '3% 3%' }}>{playerInfo.name}</div>
+          <div style={{ margin: '3% 3%' }}>{playerInfo.player}</div>
           Current Team:
           <div style={{ margin: '3% 3%' }}>{playerInfo.team}</div>
           Career Injury Percentage:
-          <div style={{ margin: '3% 3%' }}>{playerPercentage(playerInfo.gamesPlayed, playerInfo.gamesMissed)}</div>
+          <div style={{ margin: '3% 3%' }}>{playerPercentage(playerInfo.gamesplayed, playerInfo.gamesmissed)}</div>
           Team Injury Score:
-          <div style={{ margin: '3% 3%' }}>{teamScore(playerInfo.teamQuestionables, playerInfo.teamDoubtfuls, playerInfo.teamOuts)}</div>
+          <div style={{ margin: '3% 3%' }}>{teamScore(playerInfo.questionableperseason, playerInfo.doubtfulperseason, playerInfo.outperseason)}</div>
         </div>
         <div className={styles.playerPhoto}>
           Photo

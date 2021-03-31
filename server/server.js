@@ -32,10 +32,10 @@ app.use(express.static('public'));
 //     });
 // });
 
-app.get('/api/playersInfo?:player', (req, res) => {
-  const { name } = req.query.name;
+app.get('/api/playersInfo/:player', (req, res) => {
+  const name = req.params.player;
 
-  const playerStr = 'SELECT position, player, players.team, gamesPlayed, gamesMissed, questionablePerSeason, doubtfulPerSeason, outPerSeason FROM players INNER JOIN teams WHERE players.player = $1 AND players.team = teams.name';
+  const playerStr = 'SELECT position, player, players.team, gamesPlayed, gamesMissed, questionablePerSeason, doubtfulPerSeason, outPerSeason FROM players, teams WHERE players.player = $1 AND players.team = teams.name';
 
   database.query(playerStr, [name], (err, data) => {
     if (err) {
@@ -59,6 +59,18 @@ app.post('/api/addPlayer', (req, res) => {
       console.log(err.stack);
     } else {
       res.send(201);
+    }
+  });
+});
+
+app.get('/api/getRoster', (req, res) => {
+  const rosterStr = 'SELECT * FROM favoritePlayer';
+
+  database.query(rosterStr, (err, data) => {
+    if (err) {
+      console.log(err.stack);
+    } else {
+      res.send(data.rows[0]);
     }
   });
 });
