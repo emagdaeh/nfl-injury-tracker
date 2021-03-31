@@ -63,41 +63,54 @@ const App = () => {
   return (
     <div className={styles.divider}>
       <div className={styles.colOne}>
-        <form>
+        <form className={styles.player1Form}>
           Player 1:
           <input type="text" name={player1} placeholder="Marshawn Lynch" onChange={(event) => setPlayer1(event.target.value)} />
         </form>
         <button type="submit" onClick={handlePlayerOne}>Get Player 1 Stats</button>
-        <div>
-          Player:
-          <div>{player1}</div>
-          Current Team:
-          <div>Team</div>
-          Injury Rate Per Season:
-          <div>Person</div>
-          Injury Rate for Current Team:
-          <div>Bad Team</div>
+        <div className={styles.player1DataContainer}>
+          <div className={styles.player2Data}>
+            Player:
+            <div style={{ margin: '3% 3%' }}>{player1}</div>
+            Current Team:
+            <div style={{ margin: '3% 3%' }}>Team</div>
+            Injury Rate Per Season:
+            <div style={{ margin: '3% 3%' }}>Person</div>
+            Injury Rate for Current Team:
+            <div style={{ margin: '3% 3%' }}>Bad Team</div>
+          </div>
+          <div className={styles.player1Photo}>
+            Photo
+          </div>
         </div>
         <button type="submit" onClick={handleFavorite}>Add Player to Roster</button>
-        <div>
+        <div className={styles.roster}>
           Current Roster:
+          {roster.map((player) => {
+            <input type="text" value={player} />;
+          })}
         </div>
       </div>
       <div className={styles.colTwo}>
-        <form>
+        <form className={styles.player2Form}>
           Player 2:
           <input type="text" name={player2} placeholder="Jerry Rice" onChange={(event) => setPlayer2(event.target.value)} />
         </form>
         <button type="submit" onClick={handlePlayerTwo}>Get Player 2 Stats</button>
-        <div>
-          Player:
-          <div>{player2}</div>
-          Current Team:
-          <div>Team</div>
-          Injury Rate Per Season:
-          <div>Person</div>
-          Injury Rate for Current Team:
-          <div>Bad Team</div>
+        <div className={styles.player2DataContainer}>
+          <div className={styles.player2Data}>
+            Player:
+            <div style={{ margin: '3% 3%' }}>{player2}</div>
+            Current Team:
+            <div style={{ margin: '3% 3%' }}>Team</div>
+            Injury Rate Per Season:
+            <div style={{ margin: '3% 3%' }}>Person</div>
+            Injury Rate for Current Team:
+            <div style={{ margin: '3% 3%' }}>Bad Team</div>
+          </div>
+          <div className={styles.player2Photo}>
+            Photo
+          </div>
         </div>
         <button type="submit" onClick={handleFavorite}>Add Player to Roster</button>
       </div>

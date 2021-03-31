@@ -11,8 +11,58 @@
   height: 100vh;
 }
 
+.player1Form {
+  margin-top: 10%;
+  margin-bottom: 5%;
+}
+
 .colTwo {
   grid-column: 2 / 3;
   margin-left: 3%;
   height: 100vh;
+}
+
+.player2Form {
+  margin-top: 10%;
+  margin-bottom: 5%;
+}
+
+.player1DataContainer {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  border: solid;
+  border-color: black;
+  margin: 10% 5% 5% 5%;
+}
+
+.player1Data {
+  grid-column: 1 / 2;
+  padding: 5%;
+}
+
+.player1Photo {
+  grid-column: 2 / 3;
+  padding: 5%;
+}
+
+.player2DataContainer {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  border: solid;
+  border-color: black;
+  margin: 10% 5% 5% 5%;
+}
+
+.player2Data {
+  grid-column: 1 / 2;
+  padding: 5%;
+}
+
+.player2Photo {
+  grid-column: 2 / 3;
+  padding: 5%;
+}
+
+.roster {
+  margin-top: 30vh;
 }

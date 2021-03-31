@@ -12,18 +12,39 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.static('public'));
 
-app.get('/api/playersInfo', (req, res) => {
-  axios
-    // .post(`https://api.nfl.com/oauth/token/grant_type=client_credentials&client_id=${KEYS_AND_SECRET.client_id}&client_secret=${KEYS_AND_SECRET.secret}`)
-    // .post(`http://api.nfl.com/oauth/token`)
-    .post(`https://api.nfl.com/oauth/token`, { grant_type: 'client_credentials', client_id: `${KEYS_AND_SECRET.client_id}`, client_secret: `${KEYS_AND_SECRET.secret}` })
-    .then((results) => {
-      console.log('results: ', results);
-      res.send(results.access_token);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+// const options = {
+//   url: 'https://nfl.com/v1',
+//   headers: {
+//     Authorization: `Bearer ${KEYS_AND_SECRET.NFL_API_KEY}`,
+//     'content-type': 'application/json',
+//   },
+// };
+
+// app.get('/api/playersInfo', (req, res) => {
+//   axios
+//     .get(`${options.url}/persons?fs={id,firstName,lastName,playerStats{careerStats{passingStats{attempts,completions},rushingStats{attempts,yardsPerAttempt}}}}&s={"$query":{"firstName" : "Tom","lastName" : "Brady"}}`, options)
+//     .then((results) => {
+//       console.log('results: ', results);
+//       // res.send(results.data);
+//     })
+//     .catch((err) => {
+//       res.send(err);
+//     });
+// });
+
+app.get('/api/playersInfo?:player', (req, res) => {
+  const name = req.query.name;
+  const position = req.query.position;
+
+  const playerStr = 'SELECT player, position FROM roster WHERE player = $1, position = $2';
+
+  database.query(playerStr, [name, position], (err, data) => {
+    if (err) {
+      console.log(err.stack);
+    } else {
+      res.send(data.rows[0]);
+    }
+  });
 });
 
 app.post('/api/favoritePlayer', (req, res) => {
