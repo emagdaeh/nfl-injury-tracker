@@ -17,7 +17,7 @@ CREATE TABLE teams (
   name VARCHAR (20),
   questionablePerSeason INTEGER,
   doubtfulPerSeason INTEGER,
-  outPerSeason INTEGER,
+  outPerSeason INTEGER
 );
 
 CREATE TABLE favoritePlayer (

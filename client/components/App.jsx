@@ -6,19 +6,27 @@ import PlayerInfo from './PlayerInfo';
 const App = () => {
   const [roster, setRoster] = useState([]);
 
-  // useEffect(() => {
-  //   const playersArr = [];
+  const getUpdatedRoster = () => {
+    //Axios get from database
+  };
 
-  //   for (let i = 0; i < roster.length; i++) {
+  const removePlayer = (event) => {
+    event.preventDefault();
 
-  //   }
+    const player = event.target.value;
 
-  // }, [roster]);
+    axios
+      .delete(`/api/removePlayer/${player}`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(console.log);
+  };
 
   return (
     <div className={styles.divider}>
       <div className={styles.colOne}>
-        <PlayerInfo />
+        <PlayerInfo refreshRoster={getUpdatedRoster} />
         <div className={styles.roster}>
           Current Roster:
           <ul>

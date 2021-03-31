@@ -46,7 +46,7 @@ app.get('/api/playersInfo?:player', (req, res) => {
   });
 });
 
-app.post('/api/favoritePlayer', (req, res) => {
+app.post('/api/addPlayer', (req, res) => {
   const {
     position,
     player,
@@ -59,6 +59,20 @@ app.post('/api/favoritePlayer', (req, res) => {
       console.log(err.stack);
     } else {
       res.send(201);
+    }
+  });
+});
+
+app.delete('/api/removePlayer?:player', (req, res) => {
+  const { player } = req.query.player;
+
+  const deleteStr = 'DELETE FROM favoritePlayer WHERE player = $1';
+
+  database.query(deleteStr, [player], (err) => {
+    if (err) {
+      console.log(err.stack);
+    } else {
+      res.sendStatus(200);
     }
   });
 });

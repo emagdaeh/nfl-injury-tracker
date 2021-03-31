@@ -32,18 +32,35 @@ const PlayerInfo = (props) => {
     const position = playerInfo.position;
 
     axios
-      .post('/api/favoritePlayer', { position, player })
+      .post('/api/addPlayer', { position, player })
       .then((data) => {
         console.log(data.status);
+        props.getUpdatedRoster();
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const playerPercentage = (played, missed) => (played / missed);
+  const playerPercentage = (played, missed) => {
+    const num = played / missed;
 
-  const teamScore = (q, d, o) => (q + (d * 2) + (o * 3));
+    if (Number.isNaN(num)) {
+      return '-';
+    }
+
+    return num;
+  };
+
+  const teamScore = (q, d, o) => {
+    const num = q + (d * 2) + (o * 3);
+
+    if (Number.isNaN(num)) {
+      return '-';
+    }
+
+    return num;
+  };
 
   return (
     <>
