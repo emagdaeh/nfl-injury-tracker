@@ -52,7 +52,7 @@ app.post('/api/addPlayer', (req, res) => {
     player,
   } = req.body;
 
-  const playerStr = 'INSERT INTO favoritePlayer (position, player) VALUES ($1, $2)';
+  const playerStr = 'INSERT INTO favoritePlayers (position, player) VALUES ($1, $2)';
 
   database.query(playerStr, [position, player], (err) => {
     if (err) {
@@ -64,13 +64,13 @@ app.post('/api/addPlayer', (req, res) => {
 });
 
 app.get('/api/getRoster', (req, res) => {
-  const rosterStr = 'SELECT * FROM favoritePlayer';
+  const rosterStr = 'SELECT * FROM favoritePlayers';
 
   database.query(rosterStr, (err, data) => {
     if (err) {
       console.log(err.stack);
     } else {
-      res.send(data.rows[0]);
+      res.send(data.rows);
     }
   });
 });
@@ -78,7 +78,7 @@ app.get('/api/getRoster', (req, res) => {
 app.delete('/api/removePlayer?:player', (req, res) => {
   const { player } = req.query.player;
 
-  const deleteStr = 'DELETE FROM favoritePlayer WHERE player = $1';
+  const deleteStr = 'DELETE FROM favoritePlayers WHERE player = $1';
 
   database.query(deleteStr, [player], (err) => {
     if (err) {

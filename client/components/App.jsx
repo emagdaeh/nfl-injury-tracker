@@ -6,6 +6,15 @@ import PlayerInfo from './PlayerInfo';
 const App = () => {
   const [roster, setRoster] = useState([]);
 
+  useEffect(() => {
+    axios
+      .get('/api/getRoster')
+      .then((results) => {
+        setRoster(results.data);
+      })
+      .catch(console.log);
+  }, []);
+
   const getUpdatedRoster = () => {
     axios
       .get('/api/getRoster')
@@ -31,21 +40,22 @@ const App = () => {
   return (
     <div className={styles.divider}>
       <div className={styles.colOne}>
-        <PlayerInfo refreshRoster={getUpdatedRoster} />
+        <PlayerInfo refreshRoster={getUpdatedRoster} currentRoster={roster} />
         <div className={styles.roster}>
           Current Roster:
           <ul>
-            {roster.map((player) => (
+            {roster.map((person) => (
               <li>
-                {player.position}
-                {player.name}
+                {person.position}
+                {' | '}
+                {person.player}
               </li>
             ))}
           </ul>
         </div>
       </div>
       <div className={styles.colTwo}>
-        <PlayerInfo />
+        <PlayerInfo refreshRoster={getUpdatedRoster} currentRoster={roster} />
         <div className={styles.legend}>
           Career Injury Percentage:
           <li>Calculated by dividing total games missed by the number of regular season games possible over the length of the player's career</li>

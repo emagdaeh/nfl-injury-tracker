@@ -3,35 +3,40 @@ import axios from 'axios';
 import styles from './App.module.css';
 
 const PlayerInfo = (props) => {
-  const [player, setPlayer] = useState('');
+  const { refreshRoster, currentRoster } = props;
+
+  const [person, setPlayer] = useState('');
   const [playerInfo, setPlayerInfo] = useState({});
-
-  // useEffect(() => {
-
-  // }, [playerInfo]);
 
   const handlePlayer = (event) => {
     event.preventDefault();
 
     axios
-      .get(`/api/playersInfo/${player}`)
+      .get(`/api/playersInfo/${person}`)
       .then((results) => {
         setPlayerInfo(results.data);
       })
+      .then(setPlayer(''))
       .catch(console.log);
   };
 
   const handleFavorite = (event) => {
     event.preventDefault();
 
-    const { position } = playerInfo;
+    for (let i = 0; i < currentRoster.length; i++) {
+      if (player === currentRoster[i].player) {
+        return;
+      }
+    }
+
+    const { position, player } = playerInfo;
 
     axios
       .post('/api/addPlayer', { position, player })
       .then((data) => {
         console.log(data.status);
-        props.getUpdatedRoster();
       })
+      .then(() => refreshRoster())
       .catch((error) => {
         console.log(error);
       });
@@ -73,7 +78,7 @@ const PlayerInfo = (props) => {
     <>
       <form className={styles.playerForm}>
         Player:
-        <input type="text" placeholder="Marshawn Lynch" onChange={(event) => setPlayer(event.target.value)} />
+        <input type="text" placeholder="Marshawn Lynch" value={person} onChange={(event) => setPlayer(event.target.value)} />
       </form>
       <button type="submit" onClick={handlePlayer}>Get Player Stats</button>
       <div className={styles.playerDataContainer}>

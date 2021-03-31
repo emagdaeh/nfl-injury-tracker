@@ -20,7 +20,7 @@ CREATE TABLE teams (
   outPerSeason INTEGER
 );
 
-CREATE TABLE favoritePlayer (
+CREATE TABLE favoritePlayers (
   id SERIAL PRIMARY KEY,
   position VARCHAR(2),
   player VARCHAR(50)
