@@ -51,7 +51,14 @@ const App = () => {
   return (
     <div>
       <div className={styles.header}>
-        <input className={styles.nflLogo} type="image" src="http://vignette3.wikia.nocookie.net/looneytunes/images/4/49/NFL-logo.png/revision/latest?cb=20140711021414" alt="NFL logo" />
+        <a aria-label="NFL logo" target="_blank" rel="noreferrer" href="https://fantasy.nfl.com/?icampaign=fty-nav-gnv-fantasy&o_click_id=ko_0u6l9lpylfxi7b31a">
+          <input
+            className={styles.nflLogo}
+            type="image"
+            src="http://vignette3.wikia.nocookie.net/looneytunes/images/4/49/NFL-logo.png/revision/latest?cb=20140711021414"
+            alt="NFL logo"
+          />
+        </a>
         Fantasy Injury Tracker
       </div>
       <div className={styles.divider}>
