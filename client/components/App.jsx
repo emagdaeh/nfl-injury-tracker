@@ -56,10 +56,29 @@ const App = () => {
       </div>
       <div className={styles.divider}>
         <div className={styles.colOne}>
-          <PlayerInfo refreshRoster={getUpdatedRoster} currentRoster={roster} reportPlayerStats={handlePlayer1Stats} otherPlayerStats={player2Stats} />
+          <PlayerInfo
+            refreshRoster={getUpdatedRoster}
+            currentRoster={roster}
+            reportPlayerStats={handlePlayer1Stats}
+            otherPlayerStats={player2Stats}
+          />
+          <div>
+            <div className={styles.legend}>
+              <h5>Breakdown of the injury percentage and team score:</h5>
+              <p style={{ fontSize: 'small' }}>The injury percentage is the percentage of games the player has missed over their career.  The team injury score is a calculation of the quantity of injury designations for each week over the past 10 seasons, weighted by designation.  The score is weighted heaviest for the Out designation and lowest for the Questionable designation. Doubtful is weighted closer to Out due to the higher frequency that a Doubtful designation results in the player not playing that week.</p>
+            </div>
+          </div>
+        </div>
+        <div className={styles.colTwo}>
+          <PlayerInfo
+            refreshRoster={getUpdatedRoster}
+            currentRoster={roster}
+            reportPlayerStats={handlePlayer2Stats}
+            otherPlayerStats={player1Stats}
+          />
           <div className={styles.footer}>
             <div className={styles.roster}>
-              Current Roster:
+              <h3>Current Roster:</h3>
               <ul>
                 {roster.map((person) => (
                   <li>
@@ -67,26 +86,10 @@ const App = () => {
                     {' | '}
                     {person.player}
                     {'  '}
-                    <button className={styles.removePlayerBtn} type="submit" value={person.player} onClick={removePlayer}>Remove Player</button>
+                    <button className={styles.removePlayerBtn} type="submit" value={person.player} onClick={removePlayer}>Remove</button>
                   </li>
                 ))}
               </ul>
-            </div>
-          </div>
-        </div>
-        <div className={styles.colTwo}>
-          <PlayerInfo refreshRoster={getUpdatedRoster} currentRoster={roster} reportPlayerStats={handlePlayer2Stats} otherPlayerStats={player1Stats} />
-          <div className={styles.footer}>
-            <div className={styles.legend}>
-              Career Injury Percentage:
-              <li>Calculated by dividing total games missed by the number of regular season games possible, over the length of the player's career</li>
-              <br />
-              Team Injury Score:
-              <li>Calculated over the last 10 years of regular season games</li>
-              <li>Each Questionable designation per game counts as 1 point</li>
-              <li>Each Doubtful designation per game counts as 2 points</li>
-              <li>Each Out designation per game counts at 3 points</li>
-              <li>The total is the sum of designations divided by 10 to average out the seasons, the higher score being the worse team</li>
             </div>
           </div>
         </div>

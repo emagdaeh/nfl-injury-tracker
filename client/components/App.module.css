@@ -59,6 +59,7 @@ body {
   margin: 2% 0% 2% 0%;
   background-color: white;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 47%);
+  font-weight: bolder;
 }
 
 .nameAndTeam {
@@ -112,9 +113,7 @@ body {
   margin-top: 2%;
   max-width: fit-content;
   max-height: fit-content;
-  color: white;
   padding: 2%;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 47%);
 }
 
 .footer {

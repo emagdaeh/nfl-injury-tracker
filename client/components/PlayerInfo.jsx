@@ -3,14 +3,15 @@ import axios from 'axios';
 import styles from './App.module.css';
 
 const PlayerInfo = (props) => {
-  const { refreshRoster, currentRoster, reportPlayerStats, otherPlayerStats } = props;
+  const {
+    refreshRoster,
+    currentRoster,
+    reportPlayerStats,
+    otherPlayerStats,
+  } = props;
 
   const [person, setPlayer] = useState('');
   const [playerInfo, setPlayerInfo] = useState({});
-
-  // useEffect(() => {
-
-  // }, [otherPlayerStats]);
 
   const handlePlayer = (event) => {
     event.preventDefault();
@@ -136,15 +137,17 @@ const PlayerInfo = (props) => {
       <div className={styles.playerDataContainer}>
         <div className={styles.nameAndTeam}>
           Player:
-          <div style={{ margin: '3% 3%' }}>{playerInfo.player}</div>
+          <div style={{ fontWeight: 'normal', margin: '3% 3%' }}>{playerInfo.player}</div>
+          Position:
+          <div style={{ fontWeight: 'normal', margin: '3% 3%' }}>{playerInfo.position}</div>
           Current Team:
-          <div style={{ margin: '3% 3%' }}>{playerInfo.team}</div>
+          <div style={{ fontWeight: 'normal', margin: '3% 3%' }}>{playerInfo.team}</div>
         </div>
         <div className={styles.scores}>
           Career Injury Percentage:
-          <div style={{ margin: '3% 3%', color: getPercentageColor() }}>{playerPercentage(playerInfo.gamesplayed, playerInfo.gamesmissed)}</div>
+          <div style={{ fontWeight: 'normal', margin: '3% 3%', color: getPercentageColor() }}>{playerPercentage(playerInfo.gamesplayed, playerInfo.gamesmissed)}</div>
           Team Injury Score:
-          <div style={{ margin: '3% 3%', color: getTeamTotal() }}>{teamScore(playerInfo.questionableperseason, playerInfo.doubtfulperseason, playerInfo.outperseason)}</div>
+          <div style={{ fontWeight: 'normal', margin: '3% 3%', color: getTeamTotal() }}>{teamScore(playerInfo.questionableperseason, playerInfo.doubtfulperseason, playerInfo.outperseason)}</div>
         </div>
         {(playerInfo.photo === undefined)
           ? (null)

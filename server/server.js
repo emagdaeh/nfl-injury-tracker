@@ -3,7 +3,7 @@ const axios = require('axios');
 const path = require('path');
 const morgan = require('morgan');
 const database = require('../database');
-const KEYS_AND_SECRET = require('./config.js');
+// const KEYS_AND_SECRET = require('./config.js');
 
 const app = express();
 const port = 3000;
