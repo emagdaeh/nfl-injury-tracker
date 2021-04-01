@@ -1,13 +1,12 @@
 .header {
   background-color: #013369;
   top: 0;
-  height: 3%;
+  height: 55px;
   font-weight: 500;
   font-size: larger;
-  width: 100%;
+  width: 100vw;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 47%);
   display: block;
-  height: 55px;
   margin: 0;
   color: white;
   padding: 8px 42px 8px 8px;
@@ -16,7 +15,7 @@
 
 .nflLogo {
   display: flex;
-  max-height: 40px;
+  max-height: 38px;
   align-items: left;
 }
 
@@ -32,21 +31,23 @@ body {
 
 .colOne {
   grid-column: 1 / 2;
-  margin-left: 3%;
-  height: 100vh;
-  max-width: 625px;
+  margin-left: 1%;
+  margin-right: 1%;
+  height: 100%;
+  max-width: 100%;
 }
 
 .playerForm {
-  margin-top: 10%;
-  margin-bottom: 3%;
+  display: flex;
+  margin: 2% 2%;
 }
 
 .colTwo {
   grid-column: 2 / 3;
-  margin-left: 3%;
-  height: 100vh;
-  max-width: 625px;
+  margin-left: 1%;
+  margin-right: 1%;
+  height: 100%;
+  max-width: 100%;
 }
 
 .playerDataContainer {
@@ -55,8 +56,9 @@ body {
   grid-template-rows: 1fr 1fr;
   border: solid;
   border-color: black;
-  margin: 10% 3% 3% 3%;
+  margin: 2% 0% 2% 0%;
   background-color: white;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 47%);
 }
 
 .nameAndTeam {
@@ -92,7 +94,7 @@ body {
 }
 
 .roster {
-  margin-top: 3%;
+  margin-top: 2%;
   border: solid;
   color: white;
   padding: 2%;
@@ -107,11 +109,12 @@ body {
 }
 
 .legend {
-  margin-top: 3%;
+  margin-top: 2%;
   max-width: fit-content;
   max-height: fit-content;
   color: white;
   padding: 2%;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 47%);
 }
 
 .footer {

@@ -130,8 +130,9 @@ const PlayerInfo = (props) => {
       <form className={styles.playerForm}>
         Player:
         <input type="text" placeholder="Marshawn Lynch" value={person} onChange={(event) => setPlayer(event.target.value)} />
+        {' '}
+        <button type="submit" onClick={handlePlayer}>Get Player Stats</button>
       </form>
-      <button type="submit" onClick={handlePlayer}>Get Player Stats</button>
       <div className={styles.playerDataContainer}>
         <div className={styles.nameAndTeam}>
           Player:
