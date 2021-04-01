@@ -95,6 +95,7 @@ body {
 }
 
 .roster {
+  grid-column: 2 / 3;
   margin-top: 2%;
   border: solid;
   color: white;

@@ -2,15 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './App.module.css';
 
-const PlayerInfo = (props) => {
-  const {
-    refreshRoster,
-    currentRoster,
-    reportPlayerStats,
-    otherPlayerStats,
-  } = props;
-
-  const [person, setPlayer] = useState('');
+const PlayerInfo = ({refreshRoster, currentRoster, reportPlayerStats, otherPlayerStats}) => {
+  const [person, setPerson] = useState('');
   const [playerInfo, setPlayerInfo] = useState({});
 
   const handlePlayer = (event) => {
@@ -22,7 +15,7 @@ const PlayerInfo = (props) => {
         setPlayerInfo(results.data);
         reportPlayerStats(results.data);
       })
-      .then(setPlayer(''))
+      .then(setPerson(''))
       .catch(console.log);
   };
 
@@ -130,7 +123,7 @@ const PlayerInfo = (props) => {
     <>
       <form className={styles.playerForm}>
         Player:
-        <input type="text" placeholder="Marshawn Lynch" value={person} onChange={(event) => setPlayer(event.target.value)} />
+        <input type="text" placeholder="Marshawn Lynch" value={person} onChange={(event) => setPerson(event.target.value)} />
         {' '}
         <button type="submit" onClick={handlePlayer}>Get Player Stats</button>
       </form>
