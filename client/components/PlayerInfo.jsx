@@ -22,13 +22,13 @@ const PlayerInfo = ({refreshRoster, currentRoster, reportPlayerStats, otherPlaye
   const handleFavorite = (event) => {
     event.preventDefault();
 
+    const { position, player } = playerInfo;
+
     for (let i = 0; i < currentRoster.length; i++) {
       if (player === currentRoster[i].player) {
         return;
       }
     }
-
-    const { position, player } = playerInfo;
 
     axios
       .post('/api/addPlayer', { position, player })
