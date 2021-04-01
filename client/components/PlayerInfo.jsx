@@ -86,7 +86,7 @@ const PlayerInfo = ({refreshRoster, currentRoster, reportPlayerStats, otherPlaye
       o = 1;
     }
 
-    const num = q + (d * 2) + (o * 3);
+    const num = q + (d * 4) + (o * 5);
 
     if (Number.isNaN(num)) {
       return '-';
