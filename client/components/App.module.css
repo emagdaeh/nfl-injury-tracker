@@ -25,8 +25,6 @@ body {
 
 .colOne {
   grid-column: 1 / 2;
-  border-right: solid;
-  border-color: black;
   margin-left: 3%;
   height: 100vh;
   max-width: 625px;
@@ -44,9 +42,9 @@ body {
   max-width: 625px;
 }
 
-.playerDataContainer {
+/* .playerDataContainer {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 1fr 1fr;
   border: solid;
   border-color: black;
   margin: 10% 3% 3% 3%;
@@ -55,15 +53,74 @@ body {
 
 .playerData {
   grid-column: 1 / 2;
-  padding: 3%;
+  justify-self: center;
+  align-self: center;
 }
 
 .playerPhoto {
   grid-column: 2 / 3;
-  padding: 3%;
   position: relative;
   max-height: 100px;
   width: auto;
+  justify-self: center;
+  align-self: center;
+}
+
+.logo {
+  grid-column: 2 / 3;
+  position: relative;
+  max-height: 100px;
+  width: auto;
+  justify-self: center;
+  align-self: center;
+} */
+
+.playerDataContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  border: solid;
+  border-color: black;
+  margin: 10% 3% 3% 3%;
+  background-color: white;
+}
+
+/* .playerData {
+  grid-column: 1 / 2;
+  justify-self: center;
+  align-self: center;
+} */
+
+.nameAndTeam {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  margin: 3%;
+  padding: 2%;
+}
+
+.scores {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  margin: 3%;
+  padding: 2%;
+}
+
+.playerPhoto {
+  grid-column: 2 / 3;
+  position: relative;
+  max-height: 100px;
+  width: auto;
+  justify-self: center;
+  align-self: center;
+}
+
+.logo {
+  grid-column: 2 / 3;
+  position: relative;
+  max-height: 100px;
+  width: auto;
+  justify-self: center;
+  align-self: center;
 }
 
 .roster {

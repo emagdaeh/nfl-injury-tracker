@@ -47,21 +47,6 @@ const PlayerInfo = (props) => {
       });
   };
 
-  const getPercentageColor = () => {
-    if (Object.keys(otherPlayerStats).length === 0) {
-      return 'black';
-    }
-
-    let currentPlayerPercent = playerPercentage(playerInfo.gamesplayed, playerInfo.gamesmissed);
-    let otherPlayerPercent = playerPercentage(otherPlayerStats.gamesplayed, otherPlayerStats.gamesmissed);
-
-    if (currentPlayerPercent > otherPlayerPercent) {
-      return 'red';
-    }
-
-    return 'black';
-  };
-
   const playerPercentage = (played, missed) => {
     const num = missed / played;
 
@@ -72,15 +57,22 @@ const PlayerInfo = (props) => {
     return (num * 100).toFixed(2) + '%';
   };
 
-  const getTeamTotal = () => {
+  const getPercentageColor = () => {
     if (Object.keys(otherPlayerStats).length === 0) {
       return 'black';
     }
 
-    let currentPlayerTeam = teamScore(playerInfo.questionableperseason, playerInfo.doubtfulperseason, playerInfo.outperseason);
-    let otherPlayerTeam = teamScore(otherPlayerStats.questionableperseason, otherPlayerStats.doubtfulperseason, otherPlayerStats.outperseason);
+    const currentPlayerPercent = playerPercentage(
+      playerInfo.gamesplayed,
+      playerInfo.gamesmissed,
+    );
 
-    if (currentPlayerTeam > otherPlayerTeam) {
+    const otherPlayerPercent = playerPercentage(
+      otherPlayerStats.gamesplayed,
+      otherPlayerStats.gamesmissed,
+    );
+
+    if (currentPlayerPercent > otherPlayerPercent) {
       return 'red';
     }
 
@@ -88,7 +80,6 @@ const PlayerInfo = (props) => {
   };
 
   const teamScore = (q, d, o) => {
-    console.log('playerInfo: ', playerInfo);
     if (q === 0) {
       q = 1;
     }
@@ -110,6 +101,31 @@ const PlayerInfo = (props) => {
     return num;
   };
 
+  const getTeamTotal = () => {
+    if (Object.keys(otherPlayerStats).length === 0) {
+      return 'black';
+    }
+
+    const currentPlayerTeam = teamScore(
+      playerInfo.questionableperseason,
+      playerInfo.doubtfulperseason,
+      playerInfo.outperseason,
+    );
+
+    const otherPlayerTeam = teamScore(
+      otherPlayerStats.questionableperseason,
+      otherPlayerStats.doubtfulperseason,
+      otherPlayerStats.outperseason
+    );
+
+    if (currentPlayerTeam > otherPlayerTeam) {
+      return 'red';
+    }
+
+    return 'black';
+  };
+
+
   return (
     <>
       <form className={styles.playerForm}>
@@ -118,7 +134,7 @@ const PlayerInfo = (props) => {
       </form>
       <button type="submit" onClick={handlePlayer}>Get Player Stats</button>
       <div className={styles.playerDataContainer}>
-        <div className={styles.playerData}>
+        {/* <div className={styles.playerData}>
           Player:
           <div style={{ margin: '3% 3%' }}>{playerInfo.player}</div>
           Current Team:
@@ -127,10 +143,25 @@ const PlayerInfo = (props) => {
           <div style={{ margin: '3% 3%', color: getPercentageColor() }}>{playerPercentage(playerInfo.gamesplayed, playerInfo.gamesmissed)}</div>
           Team Injury Score:
           <div style={{ margin: '3% 3%', color: getTeamTotal() }}>{teamScore(playerInfo.questionableperseason, playerInfo.doubtfulperseason, playerInfo.outperseason)}</div>
+        </div> */}
+        <div className={styles.nameAndTeam}>
+          Player:
+          <div style={{ margin: '3% 3%' }}>{playerInfo.player}</div>
+          Current Team:
+          <div style={{ margin: '3% 3%' }}>{playerInfo.team}</div>
+        </div>
+        <div className={styles.scores}>
+          Career Injury Percentage:
+          <div style={{ margin: '3% 3%', color: getPercentageColor() }}>{playerPercentage(playerInfo.gamesplayed, playerInfo.gamesmissed)}</div>
+          Team Injury Score:
+          <div style={{ margin: '3% 3%', color: getTeamTotal() }}>{teamScore(playerInfo.questionableperseason, playerInfo.doubtfulperseason, playerInfo.outperseason)}</div>
         </div>
         {(playerInfo.photo === undefined)
           ? (null)
           : <input className={styles.playerPhoto} type="image" src={playerInfo.photo} alt={playerInfo.player} />}
+        {(playerInfo.logo === undefined)
+          ? (null)
+          : <input className={styles.playerPhoto} type="image" src={playerInfo.logo} alt={playerInfo.team} />}
       </div>
       <button type="submit" onClick={handleFavorite}>Add Player to Roster</button>
     </>

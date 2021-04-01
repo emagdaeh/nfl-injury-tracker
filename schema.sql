@@ -16,6 +16,7 @@ CREATE TABLE teams (
   id SERIAL PRIMARY KEY,
   city VARCHAR (20),
   name VARCHAR (20),
+  logo VARCHAR (200),
   questionablePerSeason INTEGER,
   doubtfulPerSeason INTEGER,
   outPerSeason INTEGER
