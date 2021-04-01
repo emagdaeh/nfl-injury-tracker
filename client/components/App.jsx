@@ -50,7 +50,10 @@ const App = () => {
 
   return (
     <div>
-      <div className={styles.header}>NFL Injury Tracker</div>
+      <div className={styles.header}>
+        <input className={styles.nflLogo} type="image" src="http://vignette3.wikia.nocookie.net/looneytunes/images/4/49/NFL-logo.png/revision/latest?cb=20140711021414" alt="NFL logo" />
+        Fantasy Injury Tracker
+      </div>
       <div className={styles.divider}>
         <div className={styles.colOne}>
           <PlayerInfo refreshRoster={getUpdatedRoster} currentRoster={roster} reportPlayerStats={handlePlayer1Stats} otherPlayerStats={player2Stats} />

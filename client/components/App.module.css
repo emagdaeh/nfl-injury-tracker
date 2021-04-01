@@ -7,10 +7,17 @@
   width: 100%;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 47%);
   display: block;
-  height: 48px;
+  height: 55px;
   margin: 0;
   color: white;
   padding: 8px 42px 8px 8px;
+  text-align: center;
+}
+
+.nflLogo {
+  display: flex;
+  max-height: 40px;
+  align-items: left;
 }
 
 body {
@@ -42,39 +49,6 @@ body {
   max-width: 625px;
 }
 
-/* .playerDataContainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border: solid;
-  border-color: black;
-  margin: 10% 3% 3% 3%;
-  background-color: white;
-}
-
-.playerData {
-  grid-column: 1 / 2;
-  justify-self: center;
-  align-self: center;
-}
-
-.playerPhoto {
-  grid-column: 2 / 3;
-  position: relative;
-  max-height: 100px;
-  width: auto;
-  justify-self: center;
-  align-self: center;
-}
-
-.logo {
-  grid-column: 2 / 3;
-  position: relative;
-  max-height: 100px;
-  width: auto;
-  justify-self: center;
-  align-self: center;
-} */
-
 .playerDataContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -84,12 +58,6 @@ body {
   margin: 10% 3% 3% 3%;
   background-color: white;
 }
-
-/* .playerData {
-  grid-column: 1 / 2;
-  justify-self: center;
-  align-self: center;
-} */
 
 .nameAndTeam {
   grid-column: 1 / 2;
@@ -132,6 +100,7 @@ body {
 
 .removePlayerBtn {
   background-color: inherit;
+  color: red;
   border: none;
   cursor: pointer;
   display: inline-block;

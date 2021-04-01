@@ -115,7 +115,7 @@ const PlayerInfo = (props) => {
     const otherPlayerTeam = teamScore(
       otherPlayerStats.questionableperseason,
       otherPlayerStats.doubtfulperseason,
-      otherPlayerStats.outperseason
+      otherPlayerStats.outperseason,
     );
 
     if (currentPlayerTeam > otherPlayerTeam) {
@@ -125,7 +125,6 @@ const PlayerInfo = (props) => {
     return 'black';
   };
 
-
   return (
     <>
       <form className={styles.playerForm}>
@@ -134,16 +133,6 @@ const PlayerInfo = (props) => {
       </form>
       <button type="submit" onClick={handlePlayer}>Get Player Stats</button>
       <div className={styles.playerDataContainer}>
-        {/* <div className={styles.playerData}>
-          Player:
-          <div style={{ margin: '3% 3%' }}>{playerInfo.player}</div>
-          Current Team:
-          <div style={{ margin: '3% 3%' }}>{playerInfo.team}</div>
-          Career Injury Percentage:
-          <div style={{ margin: '3% 3%', color: getPercentageColor() }}>{playerPercentage(playerInfo.gamesplayed, playerInfo.gamesmissed)}</div>
-          Team Injury Score:
-          <div style={{ margin: '3% 3%', color: getTeamTotal() }}>{teamScore(playerInfo.questionableperseason, playerInfo.doubtfulperseason, playerInfo.outperseason)}</div>
-        </div> */}
         <div className={styles.nameAndTeam}>
           Player:
           <div style={{ margin: '3% 3%' }}>{playerInfo.player}</div>
