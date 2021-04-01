@@ -72,6 +72,21 @@ const PlayerInfo = (props) => {
     return (num * 100).toFixed(2) + '%';
   };
 
+  const getTeamTotal = () => {
+    if (Object.keys(otherPlayerStats).length === 0) {
+      return 'black';
+    }
+
+    let currentPlayerTeam = teamScore(playerInfo.questionableperseason, playerInfo.doubtfulperseason, playerInfo.outperseason);
+    let otherPlayerTeam = teamScore(otherPlayerStats.questionableperseason, otherPlayerStats.doubtfulperseason, otherPlayerStats.outperseason);
+
+    if (currentPlayerTeam > otherPlayerTeam) {
+      return 'red';
+    }
+
+    return 'black';
+  };
+
   const teamScore = (q, d, o) => {
     console.log('playerInfo: ', playerInfo);
     if (q === 0) {
@@ -111,7 +126,7 @@ const PlayerInfo = (props) => {
           Career Injury Percentage:
           <div style={{ margin: '3% 3%', color: getPercentageColor() }}>{playerPercentage(playerInfo.gamesplayed, playerInfo.gamesmissed)}</div>
           Team Injury Score:
-          <div style={{ margin: '3% 3%' }}>{teamScore(playerInfo.questionableperseason, playerInfo.doubtfulperseason, playerInfo.outperseason)}</div>
+          <div style={{ margin: '3% 3%', color: getTeamTotal() }}>{teamScore(playerInfo.questionableperseason, playerInfo.doubtfulperseason, playerInfo.outperseason)}</div>
         </div>
         {(playerInfo.photo === undefined)
           ? (null)
