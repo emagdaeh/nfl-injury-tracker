@@ -3,10 +3,14 @@ import axios from 'axios';
 import styles from './App.module.css';
 
 const PlayerInfo = (props) => {
-  const { refreshRoster, currentRoster } = props;
+  const { refreshRoster, currentRoster, reportPlayerStats, otherPlayerStats } = props;
 
   const [person, setPlayer] = useState('');
   const [playerInfo, setPlayerInfo] = useState({});
+
+  // useEffect(() => {
+
+  // }, [otherPlayerStats]);
 
   const handlePlayer = (event) => {
     event.preventDefault();
@@ -15,6 +19,7 @@ const PlayerInfo = (props) => {
       .get(`/api/playersInfo/${person}`)
       .then((results) => {
         setPlayerInfo(results.data);
+        reportPlayerStats(results.data);
       })
       .then(setPlayer(''))
       .catch(console.log);
@@ -42,6 +47,21 @@ const PlayerInfo = (props) => {
       });
   };
 
+  const getPercentageColor = () => {
+    if (Object.keys(otherPlayerStats).length === 0) {
+      return 'black';
+    }
+
+    let currentPlayerPercent = playerPercentage(playerInfo.gamesplayed, playerInfo.gamesmissed);
+    let otherPlayerPercent = playerPercentage(otherPlayerStats.gamesplayed, otherPlayerStats.gamesmissed);
+
+    if (currentPlayerPercent > otherPlayerPercent) {
+      return 'red';
+    }
+
+    return 'black';
+  };
+
   const playerPercentage = (played, missed) => {
     const num = missed / played;
 
@@ -53,6 +73,7 @@ const PlayerInfo = (props) => {
   };
 
   const teamScore = (q, d, o) => {
+    console.log('playerInfo: ', playerInfo);
     if (q === 0) {
       q = 1;
     }
@@ -88,7 +109,7 @@ const PlayerInfo = (props) => {
           Current Team:
           <div style={{ margin: '3% 3%' }}>{playerInfo.team}</div>
           Career Injury Percentage:
-          <div style={{ margin: '3% 3%' }}>{playerPercentage(playerInfo.gamesplayed, playerInfo.gamesmissed)}</div>
+          <div style={{ margin: '3% 3%', color: getPercentageColor() }}>{playerPercentage(playerInfo.gamesplayed, playerInfo.gamesmissed)}</div>
           Team Injury Score:
           <div style={{ margin: '3% 3%' }}>{teamScore(playerInfo.questionableperseason, playerInfo.doubtfulperseason, playerInfo.outperseason)}</div>
         </div>

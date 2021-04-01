@@ -15,6 +15,7 @@
 
 body {
   background-color: #eee;
+  margin: 0;
 }
 
 .divider {
@@ -28,6 +29,7 @@ body {
   border-color: black;
   margin-left: 3%;
   height: 100vh;
+  max-width: 625px;
 }
 
 .playerForm {
@@ -39,6 +41,7 @@ body {
   grid-column: 2 / 3;
   margin-left: 3%;
   height: 100vh;
+  max-width: 625px;
 }
 
 .playerDataContainer {
@@ -68,6 +71,13 @@ body {
   border: solid;
   color: white;
   padding: 2%;
+}
+
+.removePlayerBtn {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
 }
 
 .legend {
