@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/emagdaeh/nfl-injury-tracker">
-    <img src="https://fantasy.nfl.com/?icampaign=fty-nav-gnv-fantasy&o_click_id=ko_0u6l9lpylfxi7b31a" alt="NFL logo" width="90" height="90">
+    <img src="./public/assets/NFL_logo.png" alt="NFL logo" width="90" height="90">
   </a>
 </p>
 
