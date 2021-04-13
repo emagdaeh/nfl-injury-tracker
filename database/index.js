@@ -1,27 +1,19 @@
-// const { Pool } = require('pg');
+const { Pool } = require('pg');
 
-// // const pool = new Pool({
-// //   user: 'adamwhitman',
-// //   host: 'localhost',
-// //   // host: 'host.docker.internal',
-// //   database: 'nflInjuryTracker',
-// //   port: 5432,
-// // });
+const pool = new Pool({
+  user: 'adamnfl',
+  host: 'localhost',
+  database: 'roster',
+  password: 'Freemind4@',
+  port: 5432,
+});
 
-// const pool = new Pool({
-//   user: 'adamwhitman',
-//   host: 'localhost',
-//   database: '',
-//   password: '',
-//   port: 5432,
-// });
+pool.connect((err) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('Connected to PostgreSQL Database');
+  }
+});
 
-// pool.connect((err) => {
-//   if (err) {
-//     console.log(err);
-//   } else {
-//     console.log('Connected to PostgreSQL Database');
-//   }
-// });
-
-// module.exports = pool;
+module.exports = pool;
